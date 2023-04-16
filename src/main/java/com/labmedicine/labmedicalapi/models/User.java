@@ -2,19 +2,19 @@ package com.labmedicine.labmedicalapi.models;
 
 import com.labmedicine.labmedicalapi.utils.MedicalSpecialization;
 import jakarta.persistence.Entity;
-import jakarta.validation.constraints.Min;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity(name = "users")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
 @AllArgsConstructor
+@SuperBuilder
 public class User extends Person {
     @NotNull
     private String crm;
@@ -24,5 +24,6 @@ public class User extends Person {
     private String password;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     private MedicalSpecialization specialization;
 }
