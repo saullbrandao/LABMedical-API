@@ -1,7 +1,8 @@
 package com.labmedicine.labmedicalapi.controllers;
 
-import com.labmedicine.labmedicalapi.dtos.UserRequestDto;
-import com.labmedicine.labmedicalapi.dtos.UserResponseDto;
+import com.labmedicine.labmedicalapi.dtos.user.CreateUserDto;
+import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
+import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
 import com.labmedicine.labmedicalapi.dtos.ValidationErrorDto;
 import com.labmedicine.labmedicalapi.services.UserService;
 import jakarta.validation.Valid;
@@ -24,15 +25,22 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody @Valid UserRequestDto userRequestDto, UriComponentsBuilder uriComponentsBuilder) {
-        if(userService.findByCpf(userRequestDto.getCpf()) != null) {
+    public ResponseEntity<?> create(@RequestBody @Valid CreateUserDto createUserDto, UriComponentsBuilder uriComponentsBuilder) {
+        if(userService.findByCpf(createUserDto.getCpf()) != null) {
             ValidationErrorDto error = new ValidationErrorDto(new FieldError("cpfError", "cpf", "This CPF is already registered."));
             return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
         }
 
-        UserResponseDto createdUser = userService.create(userRequestDto);
+        UserResponseDto createdUser = userService.create(createUserDto);
         URI uri = uriComponentsBuilder.path("/users/{id}").buildAndExpand(createdUser.getId()).toUri();
         return  ResponseEntity.created(uri).body(createdUser);
+    }
+
+    @PutMapping
+    @RequestMapping("/{id}")
+    public UserResponseDto updateUser(@RequestBody @Valid UpdateUserDto updateUserDto, @PathVariable Long id) {
+        updateUserDto.setId(id);
+        return userService.updateUser(updateUserDto);
     }
 
     @GetMapping
