@@ -5,13 +5,11 @@ import com.labmedicine.labmedicalapi.models.Address;
 import com.labmedicine.labmedicalapi.services.AddressService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/addresses")
@@ -27,5 +25,10 @@ public class AddressController {
         Address address = addressService.create(addressDto);
         URI uri = uriComponentsBuilder.path("/addresses/{id}").buildAndExpand(address.getId()).toUri();
         return ResponseEntity.created(uri).body(address);
+    }
+
+    @GetMapping
+    public List<Address> listAll() {
+        return addressService.listAll();
     }
 }
