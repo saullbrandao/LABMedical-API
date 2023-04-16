@@ -6,6 +6,8 @@ import com.labmedicine.labmedicalapi.models.Address;
 import com.labmedicine.labmedicalapi.repositories.AddressRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class AddressService {
     private final AddressRepository addressRepository;
@@ -20,5 +22,9 @@ public class AddressService {
         Address address = addressMapper.map(addressDto);
 
         return addressRepository.save(address);
+    }
+
+    public List<Address> listAll() {
+        return addressRepository.findAll();
     }
 }
