@@ -2,6 +2,7 @@ package com.labmedicine.labmedicalapi.services;
 
 import com.labmedicine.labmedicalapi.dtos.user.CreateUserDto;
 import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
+import com.labmedicine.labmedicalapi.dtos.user.UserPasswordDto;
 import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
 import com.labmedicine.labmedicalapi.mappers.UserMapper;
 import com.labmedicine.labmedicalapi.models.User;
@@ -43,6 +44,14 @@ public class UserService {
         mappedUser.setPassword(userFound.getPassword());
 
         User updatedUser = userRepository.save(mappedUser);
+
+        return userMapper.map(updatedUser);
+    }
+
+    public UserResponseDto updateUserPassword(UserPasswordDto userPasswordDto, Long id) {
+        User userFound = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        userFound.setPassword(userPasswordDto.getPassword());
+        User updatedUser = userRepository.save(userFound);
 
         return userMapper.map(updatedUser);
     }

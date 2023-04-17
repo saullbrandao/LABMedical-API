@@ -2,6 +2,7 @@ package com.labmedicine.labmedicalapi.controllers;
 
 import com.labmedicine.labmedicalapi.dtos.user.CreateUserDto;
 import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
+import com.labmedicine.labmedicalapi.dtos.user.UserPasswordDto;
 import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
 import com.labmedicine.labmedicalapi.dtos.ValidationErrorDto;
 import com.labmedicine.labmedicalapi.services.UserService;
@@ -41,6 +42,12 @@ public class UserController {
     public UserResponseDto updateUser(@RequestBody @Valid UpdateUserDto updateUserDto, @PathVariable Long id) {
         updateUserDto.setId(id);
         return userService.updateUser(updateUserDto);
+    }
+
+    @PatchMapping
+    @RequestMapping("/{id}/password")
+    public UserResponseDto updateUserPassword(@RequestBody @Valid UserPasswordDto userPasswordDto, @PathVariable Long id) {
+        return userService.updateUserPassword(userPasswordDto, id);
     }
 
     @GetMapping
