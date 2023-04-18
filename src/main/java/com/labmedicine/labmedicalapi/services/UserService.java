@@ -35,7 +35,7 @@ public class UserService {
         return userRepository.findByCpf(cpf);
     }
 
-    public UserResponseDto updateUser(UpdateUserDto updateUserDto) {
+    public UserResponseDto update(UpdateUserDto updateUserDto) {
         User userFound = userRepository.findById(updateUserDto.getId()).orElseThrow(EntityNotFoundException::new);
 
         User mappedUser = userMapper.map(updateUserDto);
@@ -48,7 +48,7 @@ public class UserService {
         return userMapper.map(updatedUser);
     }
 
-    public UserResponseDto updateUserPassword(UserPasswordDto userPasswordDto, Long id) {
+    public UserResponseDto updatePassword(UserPasswordDto userPasswordDto, Long id) {
         User userFound = userRepository.findById(id).orElseThrow(EntityNotFoundException::new);
         userFound.setPassword(userPasswordDto.getPassword());
         User updatedUser = userRepository.save(userFound);

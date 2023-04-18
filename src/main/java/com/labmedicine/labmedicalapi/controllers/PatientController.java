@@ -4,9 +4,6 @@ import com.labmedicine.labmedicalapi.dtos.ValidationErrorDto;
 import com.labmedicine.labmedicalapi.dtos.patient.CreatePatientDto;
 import com.labmedicine.labmedicalapi.dtos.patient.PatientResponseDto;
 import com.labmedicine.labmedicalapi.dtos.patient.UpdatePatientDto;
-import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
-import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
-import com.labmedicine.labmedicalapi.models.Patient;
 import com.labmedicine.labmedicalapi.services.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -52,8 +49,6 @@ public class PatientController {
     @PutMapping("/{id}")
     public PatientResponseDto updatePatient(@RequestBody @Valid UpdatePatientDto updatePatientDto, @PathVariable Long id) {
         updatePatientDto.setId(id);
-        return patientService.updatePatient(updatePatientDto);
+        return patientService.update(updatePatientDto);
     }
-
-
 }

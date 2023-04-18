@@ -3,12 +3,9 @@ package com.labmedicine.labmedicalapi.services;
 import com.labmedicine.labmedicalapi.dtos.patient.CreatePatientDto;
 import com.labmedicine.labmedicalapi.dtos.patient.PatientResponseDto;
 import com.labmedicine.labmedicalapi.dtos.patient.UpdatePatientDto;
-import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
-import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
 import com.labmedicine.labmedicalapi.mappers.PatientMapper;
 import com.labmedicine.labmedicalapi.models.Address;
 import com.labmedicine.labmedicalapi.models.Patient;
-import com.labmedicine.labmedicalapi.models.User;
 import com.labmedicine.labmedicalapi.repositories.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -35,7 +32,7 @@ public class PatientService {
         return patientMapper.map(createdPatient);
     }
 
-    public PatientResponseDto updatePatient(UpdatePatientDto updatePatientDto) {
+    public PatientResponseDto update(UpdatePatientDto updatePatientDto) {
         Patient patientFound = patientRepository.findById(updatePatientDto.getId()).orElseThrow(EntityNotFoundException::new);
 
         Patient mappedPatient = patientMapper.map(updatePatientDto);
