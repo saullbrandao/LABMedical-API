@@ -30,4 +30,14 @@ public class ExamService {
 
         return examMapper.map(createdExam);
     }
+
+    public ExamResponseDto update(ExamRequestDto examRequestDto, Long examId) {
+        Exam exam = examRepository.findById(examId).orElseThrow(() -> new EntityNotFoundException("Exam not found"));
+        Exam mappedExam = examMapper.map(examRequestDto);
+        mappedExam.setTime(exam.getTime());
+        mappedExam.setId(examId);
+
+        Exam updatedExam = examRepository.save(mappedExam);
+        return examMapper.map(updatedExam);
+    }
 }
