@@ -23,7 +23,7 @@ public class ExamService {
     }
 
     public ExamResponseDto create(ExamRequestDto examRequestDto) {
-        Patient patient = patientRepository.findById(examRequestDto.getPatientId()).orElseThrow(() -> new EntityNotFoundException("Patient not found"));
+        Patient patient = findPatientById(examRequestDto.getPatientId());
         Exam mappedExam = examMapper.map(examRequestDto);
         mappedExam.setPatient(patient);
         Exam createdExam = examRepository.save(mappedExam);
@@ -32,12 +32,27 @@ public class ExamService {
     }
 
     public ExamResponseDto update(ExamRequestDto examRequestDto, Long examId) {
-        Exam exam = examRepository.findById(examId).orElseThrow(() -> new EntityNotFoundException("Exam not found"));
+        Exam exam = findExamById(examId);
+        Patient patient = findPatientById(examRequestDto.getPatientId());
         Exam mappedExam = examMapper.map(examRequestDto);
         mappedExam.setTime(exam.getTime());
         mappedExam.setId(examId);
+        mappedExam.setPatient(patient);
 
         Exam updatedExam = examRepository.save(mappedExam);
         return examMapper.map(updatedExam);
+    }
+
+    public ExamResponseDto getExamById(Long id) {
+        Exam exam = findExamById(id);
+        return examMapper.map(exam);
+    }
+
+    private Exam findExamById(Long id) {
+        return examRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Exam not found."));
+    }
+
+    private Patient findPatientById(Long id) {
+        return patientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Patient not found"));
     }
 }

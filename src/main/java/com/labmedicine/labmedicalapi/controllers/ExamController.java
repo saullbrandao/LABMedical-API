@@ -19,6 +19,11 @@ public class ExamController {
         this.examService = examService;
     }
 
+    @GetMapping("/{id}")
+    public ExamResponseDto getById(@PathVariable Long id) {
+        return examService.getById(id);
+    }
+
     @PostMapping
     public ResponseEntity<ExamResponseDto> create(@RequestBody @Valid ExamRequestDto examRequestDto, UriComponentsBuilder uriComponentsBuilder) {
         ExamResponseDto exam = examService.create(examRequestDto);
