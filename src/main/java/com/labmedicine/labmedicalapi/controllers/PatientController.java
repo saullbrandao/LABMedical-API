@@ -32,6 +32,11 @@ public class PatientController {
         return patientService.listAll(name);
     }
 
+    @GetMapping("/{id}")
+    public PatientResponseDto findById(@PathVariable Long id) {
+        return patientService.findById(id);
+    }
+
     @PostMapping
     public ResponseEntity<?> create(@RequestBody @Valid CreatePatientDto createPatientDto, UriComponentsBuilder uriComponentsBuilder) {
         if(patientService.findByCpf(createPatientDto.getCpf()) != null) {
@@ -44,8 +49,7 @@ public class PatientController {
         return  ResponseEntity.created(uri).body(patient);
     }
 
-    @PutMapping
-    @RequestMapping("/{id}")
+    @PutMapping("/{id}")
     public PatientResponseDto updatePatient(@RequestBody @Valid UpdatePatientDto updatePatientDto, @PathVariable Long id) {
         updatePatientDto.setId(id);
         return patientService.updatePatient(updatePatientDto);

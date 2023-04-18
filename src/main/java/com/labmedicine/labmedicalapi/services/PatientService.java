@@ -57,4 +57,9 @@ public class PatientService {
         }
         return patientMapper.map(patientRepository.findAll());
     }
+
+    public PatientResponseDto findById(Long id) {
+        Patient patient = patientRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+        return patientMapper.map(patient);
+    }
 }
