@@ -4,26 +4,21 @@ import com.labmedicine.labmedicalapi.models.User;
 import com.labmedicine.labmedicalapi.repositories.UserRepository;
 import com.labmedicine.labmedicalapi.utils.MaritalStatus;
 import com.labmedicine.labmedicalapi.utils.MedicalSpecialization;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Component
-public class UserDataLoader implements CommandLineRunner {
+public class UserDataLoader  {
     private final UserRepository userRepository;
 
     public UserDataLoader(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        loadAddressData();
-    }
 
-    private void loadAddressData() {
+    public void loadUserData() {
 //      Only runs if the table is empty
         if (userRepository.count() == 0) {
             User user1 = User.builder()

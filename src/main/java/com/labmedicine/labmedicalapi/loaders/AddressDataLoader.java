@@ -2,25 +2,19 @@ package com.labmedicine.labmedicalapi.loaders;
 
 import com.labmedicine.labmedicalapi.models.Address;
 import com.labmedicine.labmedicalapi.repositories.AddressRepository;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @Component
-public class AddressDataLoader implements CommandLineRunner {
+public class AddressDataLoader {
     private final AddressRepository addressRepository;
 
     public AddressDataLoader(AddressRepository addressRepository) {
         this.addressRepository = addressRepository;
     }
 
-    @Override
-    public void run(String... args) throws Exception {
-        loadAddressData();
-    }
-
-    private void loadAddressData() {
+    public void loadAddressData() {
 //      Only runs if the table is empty
         if (addressRepository.count() == 0) {
             Address address1 = Address.builder()
