@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/patients")
@@ -24,6 +25,11 @@ public class PatientController {
 
     public PatientController(PatientService patientService) {
         this.patientService = patientService;
+    }
+
+    @GetMapping
+    public List<PatientResponseDto> listAll(@RequestParam(required = false) String name) {
+        return patientService.listAll(name);
     }
 
     @PostMapping
@@ -44,4 +50,6 @@ public class PatientController {
         updatePatientDto.setId(id);
         return patientService.updatePatient(updatePatientDto);
     }
+
+
 }

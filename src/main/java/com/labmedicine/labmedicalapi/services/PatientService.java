@@ -13,6 +13,8 @@ import com.labmedicine.labmedicalapi.repositories.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PatientService {
     private final PatientRepository patientRepository;
@@ -49,5 +51,10 @@ public class PatientService {
         return patientRepository.findByCpf(cpf);
     }
 
-
+    public List<PatientResponseDto> listAll(String name) {
+        if(name != null) {
+            return patientMapper.map(patientRepository.findAllByNameContaining(name));
+        }
+        return patientMapper.map(patientRepository.findAll());
+    }
 }
