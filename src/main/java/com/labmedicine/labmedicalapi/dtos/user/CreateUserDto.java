@@ -1,6 +1,6 @@
 package com.labmedicine.labmedicalapi.dtos.user;
 
-import com.labmedicine.labmedicalapi.dtos.PersonDto;
+import com.labmedicine.labmedicalapi.dtos.person.CreatePersonDto;
 import com.labmedicine.labmedicalapi.utils.MedicalSpecialization;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class CreateUserDto extends PersonDto {
+public class CreateUserDto extends CreatePersonDto {
     @NotBlank
     private String crm;
 
