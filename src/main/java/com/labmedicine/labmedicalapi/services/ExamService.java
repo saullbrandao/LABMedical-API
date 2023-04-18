@@ -48,6 +48,11 @@ public class ExamService {
         return examMapper.map(exam);
     }
 
+    public void deleteById(Long id) {
+        findExamById(id);
+        examRepository.deleteById(id);
+    }
+
     private Exam findExamById(Long id) {
         return examRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Exam not found."));
     }

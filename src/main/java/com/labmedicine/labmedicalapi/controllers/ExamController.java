@@ -21,7 +21,7 @@ public class ExamController {
 
     @GetMapping("/{id}")
     public ExamResponseDto getById(@PathVariable Long id) {
-        return examService.getById(id);
+        return examService.getExamById(id);
     }
 
     @PostMapping
@@ -34,5 +34,11 @@ public class ExamController {
     @PutMapping("/{id}")
     public ExamResponseDto update(@RequestBody @Valid ExamRequestDto examRequestDto, @PathVariable Long id) {
         return examService.update(examRequestDto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        examService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
