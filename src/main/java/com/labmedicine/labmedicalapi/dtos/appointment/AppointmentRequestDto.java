@@ -2,7 +2,10 @@ package com.labmedicine.labmedicalapi.dtos.appointment;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.Data;
+
+import java.time.LocalDateTime;
 
 @Data
 public class AppointmentRequestDto {
@@ -11,4 +14,7 @@ public class AppointmentRequestDto {
 
     @NotNull
     private Long patientId;
+
+    @Null
+    private LocalDateTime time;
 }
