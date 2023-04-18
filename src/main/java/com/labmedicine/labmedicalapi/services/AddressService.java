@@ -4,6 +4,7 @@ import com.labmedicine.labmedicalapi.dtos.AddressDto;
 import com.labmedicine.labmedicalapi.mappers.AddressMapper;
 import com.labmedicine.labmedicalapi.models.Address;
 import com.labmedicine.labmedicalapi.repositories.AddressRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -26,5 +27,9 @@ public class AddressService {
 
     public List<Address> listAll() {
         return addressRepository.findAll();
+    }
+
+    public Address findById(Long id) {
+        return addressRepository.findById(id).orElseThrow(EntityNotFoundException::new);
     }
 }
