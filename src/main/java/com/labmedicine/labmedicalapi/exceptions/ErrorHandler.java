@@ -23,7 +23,7 @@ public class ErrorHandler {
     }
 
     @ExceptionHandler(EntityNotFoundException.class)
-    public ResponseEntity<NotFoundException> notFoundError() {
-        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new NotFoundException("Not Found"));
+    public ResponseEntity<NotFoundException> notFoundError(EntityNotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new NotFoundException(ex.getMessage()));
     }
 }
