@@ -32,17 +32,22 @@ public class AppointmentService {
     }
 
     public AppointmentResponseDto update(AppointmentRequestDto appointmentRequestDto, Long appointmentId) {
-       Appointment appointmentFound = appointmentRepository.findById(appointmentId).orElseThrow(() -> new EntityNotFoundException("Appointment not found."));
-       Appointment mappedAppointment = appointmentMapper.map(appointmentRequestDto);
-       mappedAppointment.setTime(appointmentFound.getTime());
-       mappedAppointment.setId(appointmentId);
+        Appointment appointmentFound = appointmentRepository.findById(appointmentId).orElseThrow(() -> new EntityNotFoundException("Appointment not found."));
+        Appointment mappedAppointment = appointmentMapper.map(appointmentRequestDto);
+        mappedAppointment.setTime(appointmentFound.getTime());
+        mappedAppointment.setId(appointmentId);
 
-       Appointment updatedAppointment = appointmentRepository.save(mappedAppointment);
-       return appointmentMapper.map(updatedAppointment);
+        Appointment updatedAppointment = appointmentRepository.save(mappedAppointment);
+        return appointmentMapper.map(updatedAppointment);
     }
 
     public AppointmentResponseDto findById(Long id) {
         Appointment appointment = appointmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Appointment not found."));
         return appointmentMapper.map(appointment);
+    }
+
+    public void deleteById(Long id) {
+      appointmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Appointment not found."));
+      appointmentRepository.deleteById(id);
     }
 }
