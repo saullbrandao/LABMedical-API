@@ -1,6 +1,6 @@
 package com.labmedicine.labmedicalapi.dtos.patient;
 
-import com.labmedicine.labmedicalapi.dtos.person.CreatePersonDto;
+import com.labmedicine.labmedicalapi.dtos.person.UpdatePersonDto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @EqualsAndHashCode(callSuper = false)
 @Data
-public class CreatePatientDto extends CreatePersonDto {
+public class UpdatePatientDto extends UpdatePersonDto {
     private String allergies, specificCare, insurance, insuranceCardNumber;
     private LocalDate insuranceExpirationDate;
 

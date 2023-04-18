@@ -1,9 +1,14 @@
 package com.labmedicine.labmedicalapi.services;
 
 import com.labmedicine.labmedicalapi.dtos.patient.CreatePatientDto;
+import com.labmedicine.labmedicalapi.dtos.patient.PatientResponseDto;
+import com.labmedicine.labmedicalapi.dtos.patient.UpdatePatientDto;
+import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
+import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
 import com.labmedicine.labmedicalapi.mappers.PatientMapper;
 import com.labmedicine.labmedicalapi.models.Address;
 import com.labmedicine.labmedicalapi.models.Patient;
+import com.labmedicine.labmedicalapi.models.User;
 import com.labmedicine.labmedicalapi.repositories.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -20,12 +25,24 @@ public class PatientService {
         this.addressService = addressService;
     }
 
-    public Patient create(CreatePatientDto createPatientDto) {
+    public PatientResponseDto create(CreatePatientDto createPatientDto) {
         Address address = addressService.findById(createPatientDto.getAddressId());
         Patient mappedPatient = patientMapper.map(createPatientDto);
         mappedPatient.setAddress(address);
         Patient createdPatient = patientRepository.save(mappedPatient);
-        return patientRepository.findById(createdPatient.getId()).orElseThrow(EntityNotFoundException::new);
+        return patientMapper.map(createdPatient);
+    }
+
+    public PatientResponseDto updatePatient(UpdatePatientDto updatePatientDto) {
+        Patient patientFound = patientRepository.findById(updatePatientDto.getId()).orElseThrow(EntityNotFoundException::new);
+
+        Patient mappedPatient = patientMapper.map(updatePatientDto);
+        mappedPatient.setCpf(patientFound.getCpf());
+        mappedPatient.setRg(patientFound.getRg());
+
+        Patient updatedPatient = patientRepository.save(mappedPatient);
+
+        return patientMapper.map(updatedPatient);
     }
 
     public Patient findByCpf(String cpf) {

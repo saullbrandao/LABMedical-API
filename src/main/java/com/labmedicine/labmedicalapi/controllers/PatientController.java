@@ -2,6 +2,10 @@ package com.labmedicine.labmedicalapi.controllers;
 
 import com.labmedicine.labmedicalapi.dtos.ValidationErrorDto;
 import com.labmedicine.labmedicalapi.dtos.patient.CreatePatientDto;
+import com.labmedicine.labmedicalapi.dtos.patient.PatientResponseDto;
+import com.labmedicine.labmedicalapi.dtos.patient.UpdatePatientDto;
+import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
+import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
 import com.labmedicine.labmedicalapi.models.Patient;
 import com.labmedicine.labmedicalapi.services.PatientService;
 import jakarta.validation.Valid;
@@ -29,8 +33,15 @@ public class PatientController {
             return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
         }
 
-        Patient patient = patientService.create(createPatientDto);
+        PatientResponseDto patient = patientService.create(createPatientDto);
         URI uri = uriComponentsBuilder.path("/patients/{id}").buildAndExpand(patient.getId()).toUri();
         return  ResponseEntity.created(uri).body(patient);
+    }
+
+    @PutMapping
+    @RequestMapping("/{id}")
+    public PatientResponseDto updatePatient(@RequestBody @Valid UpdatePatientDto updatePatientDto, @PathVariable Long id) {
+        updatePatientDto.setId(id);
+        return patientService.updatePatient(updatePatientDto);
     }
 }
