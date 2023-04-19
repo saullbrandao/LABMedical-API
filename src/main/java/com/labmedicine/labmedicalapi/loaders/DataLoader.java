@@ -9,12 +9,14 @@ public class DataLoader implements CommandLineRunner {
     private final UserDataLoader userDataLoader;
     private final PatientDataLoader patientDataLoader;
     private final AppointmentDataLoader appointmentDataLoader;
+    private final ExamDataLoader examDataLoader;
 
-    public DataLoader(AddressDataLoader addressDataLoader, UserDataLoader userDataLoader, PatientDataLoader patientDataLoader, AppointmentDataLoader appointmentDataLoader) {
+    public DataLoader(AddressDataLoader addressDataLoader, UserDataLoader userDataLoader, PatientDataLoader patientDataLoader, AppointmentDataLoader appointmentDataLoader, ExamDataLoader examDataLoader) {
         this.addressDataLoader = addressDataLoader;
         this.userDataLoader = userDataLoader;
         this.patientDataLoader = patientDataLoader;
         this.appointmentDataLoader = appointmentDataLoader;
+        this.examDataLoader = examDataLoader;
     }
 
     @Override
@@ -23,5 +25,6 @@ public class DataLoader implements CommandLineRunner {
         userDataLoader.loadUserData();
         patientDataLoader.loadPatientData();
         appointmentDataLoader.loadAppointmentData();
+        examDataLoader.loadExamData();
     }
 }
