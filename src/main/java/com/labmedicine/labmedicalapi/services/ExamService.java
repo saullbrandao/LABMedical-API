@@ -35,7 +35,7 @@ public class ExamService {
         return examMapper.map(createdExam);
     }
 
-    public ExamResponseDto update(ExamRequestDto examRequestDto, Long examId) {
+    public ExamResponseDto update(ExamRequestDto examRequestDto, String examId) {
         Exam exam = findById(examId);
         Patient patient = patientService.findById(examRequestDto.getPatientId());
         Doctor doctor = doctorService.findById(examRequestDto.getDoctorId());
@@ -49,17 +49,17 @@ public class ExamService {
         return examMapper.map(updatedExam);
     }
 
-    public ExamResponseDto getExamById(Long id) {
+    public ExamResponseDto getExamById(String id) {
         Exam exam = findById(id);
         return examMapper.map(exam);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         findById(id);
         examRepository.deleteById(id);
     }
 
-    public Exam findById(Long id) {
+    public Exam findById(String id) {
         return examRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Exam not found."));
     }
 }

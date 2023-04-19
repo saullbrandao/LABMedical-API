@@ -41,7 +41,7 @@ public class PatientService {
         return patientMapper.map(createdPatient);
     }
 
-    public PatientResponseDto update(UpdatePatientDto updatePatientDto, Long id) {
+    public PatientResponseDto update(UpdatePatientDto updatePatientDto, String id) {
         Patient patientFound = findById(id);
         Address address = addressService.getAddressById(updatePatientDto.getAddressId());
         Patient mappedPatient = patientMapper.map(updatePatientDto);
@@ -65,16 +65,16 @@ public class PatientService {
         return patientMapper.map(patientRepository.findAll());
     }
 
-    public PatientResponseDto getPatientById(Long id) {
+    public PatientResponseDto getPatientById(String id) {
         Patient patient = findById(id);
         return patientMapper.map(patient);
     }
 
-    public Patient findById(Long id) {
+    public Patient findById(String id) {
         return patientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Patient not found."));
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         Patient patient = findById(id);
         if(examRepository.existsByPatientId(id)) {
             throw new PatientHasExamsException();

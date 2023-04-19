@@ -20,7 +20,7 @@ public class ExamController {
     }
 
     @GetMapping("/{id}")
-    public ExamResponseDto getById(@PathVariable Long id) {
+    public ExamResponseDto getById(@PathVariable String id) {
         return examService.getExamById(id);
     }
 
@@ -32,12 +32,12 @@ public class ExamController {
     }
 
     @PutMapping("/{id}")
-    public ExamResponseDto update(@RequestBody @Valid ExamRequestDto examRequestDto, @PathVariable Long id) {
+    public ExamResponseDto update(@RequestBody @Valid ExamRequestDto examRequestDto, @PathVariable String id) {
         return examService.update(examRequestDto, id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
         examService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

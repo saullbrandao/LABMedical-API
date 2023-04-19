@@ -1,9 +1,9 @@
 package com.labmedicine.labmedicalapi.controllers;
 
-import com.labmedicine.labmedicalapi.exceptions.dto.ValidationErrorExceptionDto;
 import com.labmedicine.labmedicalapi.dtos.patient.CreatePatientDto;
 import com.labmedicine.labmedicalapi.dtos.patient.PatientResponseDto;
 import com.labmedicine.labmedicalapi.dtos.patient.UpdatePatientDto;
+import com.labmedicine.labmedicalapi.exceptions.dto.ValidationErrorExceptionDto;
 import com.labmedicine.labmedicalapi.services.PatientService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ public class PatientController {
     }
 
     @GetMapping("/{id}")
-    public PatientResponseDto getById(@PathVariable Long id) {
+    public PatientResponseDto getById(@PathVariable String id) {
         return patientService.getPatientById(id);
     }
 
@@ -47,12 +47,12 @@ public class PatientController {
     }
 
     @PutMapping("/{id}")
-    public PatientResponseDto update(@RequestBody @Valid UpdatePatientDto updatePatientDto, @PathVariable Long id) {
+    public PatientResponseDto update(@RequestBody @Valid UpdatePatientDto updatePatientDto, @PathVariable String id) {
         return patientService.update(updatePatientDto, id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
         patientService.deleteById(id);
         return ResponseEntity.noContent().build();
     }

@@ -1,7 +1,6 @@
 package com.labmedicine.labmedicalapi.models;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,8 +17,8 @@ import java.time.LocalDateTime;
 @Builder
 public class Exam {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     @NotNull
     private String name, type, fileUrl, result, laboratory;

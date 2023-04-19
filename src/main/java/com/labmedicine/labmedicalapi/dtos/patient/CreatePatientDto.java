@@ -3,7 +3,6 @@ package com.labmedicine.labmedicalapi.dtos.patient;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.labmedicine.labmedicalapi.dtos.person.CreatePersonDto;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -20,6 +19,6 @@ public class CreatePatientDto extends CreatePersonDto {
     @NotBlank
     private String emergencyContact;
 
-    @NotNull
-    private Long addressId;
+    @NotBlank
+    private String addressId;
 }

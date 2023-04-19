@@ -35,7 +35,7 @@ public class AppointmentService {
         return appointmentMapper.map(createdAppointment);
     }
 
-    public AppointmentResponseDto update(AppointmentRequestDto appointmentRequestDto, Long appointmentId) {
+    public AppointmentResponseDto update(AppointmentRequestDto appointmentRequestDto, String appointmentId) {
         Appointment appointmentFound = findById(appointmentId);
         Patient patient = patientService.findById(appointmentRequestDto.getPatientId());
         Doctor doctor = doctorService.findById(appointmentRequestDto.getDoctorId());
@@ -49,17 +49,17 @@ public class AppointmentService {
         return appointmentMapper.map(updatedAppointment);
     }
 
-    public AppointmentResponseDto getAppointmentById(Long id) {
+    public AppointmentResponseDto getAppointmentById(String id) {
         Appointment appointment = findById(id);
         return appointmentMapper.map(appointment);
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(String id) {
         findById(id);
         appointmentRepository.deleteById(id);
     }
 
-    public Appointment findById(Long id) {
+    public Appointment findById(String id) {
         return appointmentRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Appointment not found."));
     }
 }

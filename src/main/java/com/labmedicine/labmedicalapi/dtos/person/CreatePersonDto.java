@@ -1,6 +1,7 @@
 package com.labmedicine.labmedicalapi.dtos.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.labmedicine.labmedicalapi.utils.Gender;
 import com.labmedicine.labmedicalapi.utils.MaritalStatus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -21,11 +22,14 @@ public abstract class CreatePersonDto {
     private String email;
 
     @NotBlank
-    private String name, gender, rg, phone, nationality;
+    private String name, rg, phone, nationality;
 
     @JsonFormat(pattern="dd/MM/yyyy")
     @NotNull
     private LocalDate birthDate;
+
+    @NotNull
+    private Gender gender;
 
     @NotNull
     private MaritalStatus maritalStatus;

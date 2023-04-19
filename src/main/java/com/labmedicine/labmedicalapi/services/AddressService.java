@@ -29,7 +29,7 @@ public class AddressService {
         return addressRepository.findAll();
     }
 
-    public Address getAddressById(Long id) {
+    public Address getAddressById(String id) {
         return addressRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Address not found"));
     }
 }

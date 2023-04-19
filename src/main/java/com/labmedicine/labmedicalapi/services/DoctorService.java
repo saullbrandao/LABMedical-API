@@ -35,7 +35,7 @@ public class DoctorService {
         return doctorRepository.findByCpf(cpf);
     }
 
-    public DoctorResponseDto update(UpdateDoctorDto updateDoctorDto, Long id) {
+    public DoctorResponseDto update(UpdateDoctorDto updateDoctorDto, String id) {
         Doctor doctorFound = findById(id);
         Doctor mappedDoctor = doctorMapper.map(updateDoctorDto);
         mappedDoctor.setId(id);
@@ -47,7 +47,7 @@ public class DoctorService {
         return doctorMapper.map(updatedDoctor);
     }
 
-    public DoctorResponseDto updatePassword(UpdateDoctorPasswordDto updateDoctorPasswordDto, Long id) {
+    public DoctorResponseDto updatePassword(UpdateDoctorPasswordDto updateDoctorPasswordDto, String id) {
         Doctor doctorFound = findById(id);
         doctorFound.setPassword(updateDoctorPasswordDto.getPassword());
         Doctor updatedDoctor = doctorRepository.save(doctorFound);
@@ -55,7 +55,7 @@ public class DoctorService {
         return doctorMapper.map(updatedDoctor);
     }
 
-    public Doctor findById(Long id) {
+    public Doctor findById(String id) {
         return doctorRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Doctor not found"));
     }
 }
