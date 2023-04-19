@@ -4,7 +4,7 @@ import com.labmedicine.labmedicalapi.dtos.user.CreateUserDto;
 import com.labmedicine.labmedicalapi.dtos.user.UpdateUserDto;
 import com.labmedicine.labmedicalapi.dtos.user.UserPasswordDto;
 import com.labmedicine.labmedicalapi.dtos.user.UserResponseDto;
-import com.labmedicine.labmedicalapi.exceptions.ValidationErrorException;
+import com.labmedicine.labmedicalapi.exceptions.dto.ValidationErrorExceptionDto;
 import com.labmedicine.labmedicalapi.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
@@ -28,7 +28,7 @@ public class UserController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody @Valid CreateUserDto createUserDto, UriComponentsBuilder uriComponentsBuilder) {
         if(userService.findByCpf(createUserDto.getCpf()) != null) {
-            ValidationErrorException error = new ValidationErrorException(new FieldError("cpfError", "cpf", "This CPF is already registered."));
+            ValidationErrorExceptionDto error = new ValidationErrorExceptionDto(new FieldError("cpfError", "cpf", "This CPF is already registered."));
             return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
         }
 

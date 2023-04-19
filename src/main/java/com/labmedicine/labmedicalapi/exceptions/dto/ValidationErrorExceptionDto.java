@@ -1,14 +1,14 @@
-package com.labmedicine.labmedicalapi.exceptions;
+package com.labmedicine.labmedicalapi.exceptions.dto;
 
 import lombok.Getter;
 import org.springframework.validation.FieldError;
 
 @Getter
-public class ValidationErrorException {
+public class ValidationErrorExceptionDto {
     private final String field;
     private final String message;
 
-    public ValidationErrorException(FieldError error) {
+    public ValidationErrorExceptionDto(FieldError error) {
         this.field = error.getField();
         this.message = error.getDefaultMessage();
     }
