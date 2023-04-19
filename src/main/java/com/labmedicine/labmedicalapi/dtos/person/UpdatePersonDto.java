@@ -5,6 +5,7 @@ import com.labmedicine.labmedicalapi.utils.MaritalStatus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Null;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.validator.constraints.br.CPF;
@@ -20,10 +21,13 @@ public abstract class UpdatePersonDto {
     @NotBlank
     private String name, gender, phone, nationality;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="dd/MM/yyyy")
     @NotNull
     private LocalDate birthDate;
 
     @NotNull
     private MaritalStatus maritalStatus;
+
+    @Null
+    private String cpf, rg;
 }

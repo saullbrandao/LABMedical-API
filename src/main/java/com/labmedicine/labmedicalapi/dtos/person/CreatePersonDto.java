@@ -23,7 +23,7 @@ public abstract class CreatePersonDto {
     @NotBlank
     private String name, gender, rg, phone, nationality;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="dd/MM/yyyy")
     @NotNull
     private LocalDate birthDate;
 

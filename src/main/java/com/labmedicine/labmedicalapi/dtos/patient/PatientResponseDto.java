@@ -1,5 +1,6 @@
 package com.labmedicine.labmedicalapi.dtos.patient;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.labmedicine.labmedicalapi.dtos.person.PersonResponseDto;
 import com.labmedicine.labmedicalapi.models.Address;
 import lombok.Data;
@@ -11,6 +12,8 @@ import java.time.LocalDate;
 @Data
 public class PatientResponseDto extends PersonResponseDto {
     private String allergies, specificCare, insurance, insuranceCardNumber, emergencyContact;
+
+    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate insuranceExpirationDate;
     private Address address;
 }
