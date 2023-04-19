@@ -15,7 +15,7 @@ public abstract class PersonResponseDto {
     private Long id;
     private String name, gender, cpf, email, rg, phone, nationality;
 
-    @JsonFormat(pattern="dd-MM-yyyy")
+    @JsonFormat(pattern="dd/MM/yyyy")
     private LocalDate birthDate;
 
     private MaritalStatus maritalStatus;
