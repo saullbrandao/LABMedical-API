@@ -21,7 +21,7 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull
     private String reason, description, prescription, precautions;
 
     @CreationTimestamp

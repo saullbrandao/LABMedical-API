@@ -22,10 +22,10 @@ public abstract class Person {
     private Long id;
 
     @Column(unique = true)
+    @NotNull
     private String cpf;
 
     @NotNull
-    @NotBlank
     private String name, gender, rg, phone, email, nationality;
 
     @NotNull
