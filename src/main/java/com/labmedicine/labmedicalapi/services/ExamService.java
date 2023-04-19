@@ -6,24 +6,23 @@ import com.labmedicine.labmedicalapi.mappers.ExamMapper;
 import com.labmedicine.labmedicalapi.models.Exam;
 import com.labmedicine.labmedicalapi.models.Patient;
 import com.labmedicine.labmedicalapi.repositories.ExamRepository;
-import com.labmedicine.labmedicalapi.repositories.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ExamService {
     private final ExamRepository examRepository;
-    private final PatientRepository patientRepository;
+    private final PatientService patientService;
     private final ExamMapper examMapper;
 
-    public ExamService(ExamRepository examRepository, PatientRepository patientRepository, ExamMapper examMapper) {
+    public ExamService(ExamRepository examRepository, PatientService patientService, ExamMapper examMapper) {
         this.examRepository = examRepository;
-        this.patientRepository = patientRepository;
+        this.patientService = patientService;
         this.examMapper = examMapper;
     }
 
     public ExamResponseDto create(ExamRequestDto examRequestDto) {
-        Patient patient = findPatientById(examRequestDto.getPatientId());
+        Patient patient = patientService.findById(examRequestDto.getPatientId());
         Exam mappedExam = examMapper.map(examRequestDto);
         mappedExam.setPatient(patient);
         Exam createdExam = examRepository.save(mappedExam);
@@ -32,8 +31,8 @@ public class ExamService {
     }
 
     public ExamResponseDto update(ExamRequestDto examRequestDto, Long examId) {
-        Exam exam = findExamById(examId);
-        Patient patient = findPatientById(examRequestDto.getPatientId());
+        Exam exam = findById(examId);
+        Patient patient = patientService.findById(examRequestDto.getPatientId());
         Exam mappedExam = examMapper.map(examRequestDto);
         mappedExam.setTime(exam.getTime());
         mappedExam.setId(examId);
@@ -44,20 +43,16 @@ public class ExamService {
     }
 
     public ExamResponseDto getExamById(Long id) {
-        Exam exam = findExamById(id);
+        Exam exam = findById(id);
         return examMapper.map(exam);
     }
 
     public void deleteById(Long id) {
-        findExamById(id);
+        findById(id);
         examRepository.deleteById(id);
     }
 
-    private Exam findExamById(Long id) {
+    public Exam findById(Long id) {
         return examRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Exam not found."));
-    }
-
-    private Patient findPatientById(Long id) {
-        return patientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Patient not found"));
     }
 }

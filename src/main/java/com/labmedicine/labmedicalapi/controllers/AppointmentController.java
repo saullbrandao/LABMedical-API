@@ -20,8 +20,8 @@ public class AppointmentController {
     }
 
     @GetMapping("/{id}")
-    public AppointmentResponseDto findById(@PathVariable Long id) {
-        return appointmentService.findById(id);
+    public AppointmentResponseDto getById(@PathVariable Long id) {
+        return appointmentService.getAppointmentById(id);
     }
 
     @PostMapping

@@ -13,8 +13,6 @@ import java.time.LocalDate;
 
 @Data
 public abstract class UpdatePersonDto {
-    private Long id;
-
     @Email
     @NotBlank
     private String email;

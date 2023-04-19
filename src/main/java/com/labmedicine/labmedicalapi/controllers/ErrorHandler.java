@@ -1,6 +1,7 @@
-package com.labmedicine.labmedicalapi.exceptions;
+package com.labmedicine.labmedicalapi.controllers;
 
-import com.labmedicine.labmedicalapi.dtos.ValidationErrorDto;
+import com.labmedicine.labmedicalapi.exceptions.NotFoundException;
+import com.labmedicine.labmedicalapi.exceptions.ValidationErrorException;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,11 +16,11 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class ErrorHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<List<ValidationErrorDto>> validationError(MethodArgumentNotValidException ex) {
+    public ResponseEntity<List<ValidationErrorException>> validationError(MethodArgumentNotValidException ex) {
         List<FieldError> errors = ex.getFieldErrors();
 
         return ResponseEntity.badRequest().body(
-                errors.stream().map(ValidationErrorDto::new).collect(Collectors.toList()));
+                errors.stream().map(ValidationErrorException::new).collect(Collectors.toList()));
     }
 
     @ExceptionHandler(EntityNotFoundException.class)

@@ -13,22 +13,10 @@ import java.time.LocalDate;
 @Data
 public abstract class PersonResponseDto {
     private Long id;
-
-    @NotBlank
-    @CPF
-    private String cpf;
-
-    @Email
-    @NotBlank
-    private String email;
-
-    @NotBlank
-    private String name, gender, rg, phone, nationality;
+    private String name, gender, cpf, email, rg, phone, nationality;
 
     @JsonFormat(pattern="dd-MM-yyyy")
-    @NotNull
     private LocalDate birthDate;
 
-    @NotNull
     private MaritalStatus maritalStatus;
 }

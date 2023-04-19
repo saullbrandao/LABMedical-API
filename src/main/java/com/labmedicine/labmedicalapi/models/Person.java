@@ -2,6 +2,7 @@ package com.labmedicine.labmedicalapi.models;
 
 import com.labmedicine.labmedicalapi.utils.MaritalStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,6 +24,8 @@ public abstract class Person {
     @Column(unique = true)
     private String cpf;
 
+    @NotNull
+    @NotBlank
     private String name, gender, rg, phone, email, nationality;
 
     @NotNull
