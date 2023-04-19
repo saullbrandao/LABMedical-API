@@ -19,7 +19,7 @@ public class PatientDataLoader {
         this.addressRepository = addressRepository;
     }
 
-    public void loadPatientData() {
+    public void load() {
 //      Only runs if the table is empty
         if (patientRepository.count() == 0) {
             Patient patient1 = Patient.builder()

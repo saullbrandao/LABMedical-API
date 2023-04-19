@@ -13,7 +13,7 @@ public class AppointmentRequestDto {
     private String reason, description, prescription, precautions;
 
     @NotNull
-    private Long patientId;
+    private Long patientId, doctorId;
 
     @Null
     private LocalDateTime time;

@@ -14,7 +14,7 @@ public class AddressDataLoader {
         this.addressRepository = addressRepository;
     }
 
-    public void loadAddressData() {
+    public void load() {
 //      Only runs if the table is empty
         if (addressRepository.count() == 0) {
             Address address1 = Address.builder()

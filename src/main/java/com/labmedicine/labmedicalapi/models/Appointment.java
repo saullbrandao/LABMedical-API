@@ -32,4 +32,9 @@ public class Appointment {
     @JoinColumn(name = "patient_id")
     @NotNull
     private Patient patient;
+
+    @ManyToOne
+    @JoinColumn(name = "doctor_id")
+    @NotNull
+    private Doctor doctor;
 }

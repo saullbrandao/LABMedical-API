@@ -30,7 +30,10 @@ public class Exam {
     private LocalDateTime time;
 
     @ManyToOne
-    @JoinColumn(name = "patient_id")
     @NotNull
     private Patient patient;
+
+    @ManyToOne
+    @NotNull
+    private Doctor doctor;
 }
