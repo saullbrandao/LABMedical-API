@@ -25,22 +25,23 @@ public class PatientService {
     }
 
     public PatientResponseDto create(CreatePatientDto createPatientDto) {
-        Address address = addressService.findById(createPatientDto.getAddressId());
+        Address address = addressService.getAddressById(createPatientDto.getAddressId());
         Patient mappedPatient = patientMapper.map(createPatientDto);
         mappedPatient.setAddress(address);
+
         Patient createdPatient = patientRepository.save(mappedPatient);
         return patientMapper.map(createdPatient);
     }
 
-    public PatientResponseDto update(UpdatePatientDto updatePatientDto) {
-        Patient patientFound = patientRepository.findById(updatePatientDto.getId()).orElseThrow(EntityNotFoundException::new);
-
+    public PatientResponseDto update(UpdatePatientDto updatePatientDto, Long id) {
+        Patient patientFound = findById(id);
+        Address address = addressService.getAddressById(updatePatientDto.getAddressId());
         Patient mappedPatient = patientMapper.map(updatePatientDto);
         mappedPatient.setCpf(patientFound.getCpf());
         mappedPatient.setRg(patientFound.getRg());
+        mappedPatient.setAddress(address);
 
         Patient updatedPatient = patientRepository.save(mappedPatient);
-
         return patientMapper.map(updatedPatient);
     }
 
@@ -55,8 +56,12 @@ public class PatientService {
         return patientMapper.map(patientRepository.findAll());
     }
 
-    public PatientResponseDto findById(Long id) {
-        Patient patient = patientRepository.findById(id).orElseThrow(EntityNotFoundException::new);
+    public PatientResponseDto getPatientById(Long id) {
+        Patient patient = findById(id);
         return patientMapper.map(patient);
+    }
+
+    public Patient findById(Long id) {
+        return patientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Patient not found."));
     }
 }

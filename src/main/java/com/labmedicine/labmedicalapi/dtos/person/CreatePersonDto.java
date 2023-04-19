@@ -12,8 +12,6 @@ import java.time.LocalDate;
 
 @Data
 public abstract class CreatePersonDto {
-    private Long id;
-
     @NotBlank
     @CPF
     private String cpf;
