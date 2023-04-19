@@ -17,7 +17,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/doctors")
 public class DoctorController {
     private final DoctorService doctorService;
 

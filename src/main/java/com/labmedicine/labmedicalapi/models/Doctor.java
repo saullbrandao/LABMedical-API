@@ -9,7 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-@Entity(name = "users")
+@Entity(name = "doctors")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @NoArgsConstructor
