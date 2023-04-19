@@ -1,14 +1,13 @@
 package com.labmedicine.labmedicalapi.dtos.person;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.labmedicine.labmedicalapi.utils.Gender;
 import com.labmedicine.labmedicalapi.utils.MaritalStatus;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Null;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDate;
 
@@ -19,7 +18,7 @@ public abstract class UpdatePersonDto {
     private String email;
 
     @NotBlank
-    private String name, gender, phone, nationality;
+    private String name, phone, nationality;
 
     @JsonFormat(pattern="dd/MM/yyyy")
     @NotNull
@@ -27,6 +26,9 @@ public abstract class UpdatePersonDto {
 
     @NotNull
     private MaritalStatus maritalStatus;
+
+    @NotNull
+    private Gender gender;
 
     @Null
     private String cpf, rg;

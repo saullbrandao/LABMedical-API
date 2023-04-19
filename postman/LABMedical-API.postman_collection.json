@@ -1,0 +1,1111 @@
+{
+	"info": {
+		"_postman_id": "a3c19de3-4a92-4f18-9516-e3d21c8b785b",
+		"name": "LABMedical-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Address",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/addresses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ create(201)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cep\": \"88134-597\",\n    \"city\": \"Palhoça\",\n    \"street\": \"Rua Manoel Macário da Silva\", \n    \"district\": \"Barra do Aririú\",\n    \"state\": \"Santa Catarina\", \n    \"addressNumber\": 10\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/addresses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ create(400)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/addresses",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"addresses"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Doctor",
+			"item": [
+				{
+					"name": "list",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/doctors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ create(201)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Augusto Thales Alves\",\n    \"cpf\": \"19777475900\",\n    \"rg\": \"498686061\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"email\": \"augustothalesalves@marithimaconstrutora.com.br\",\n    \"nationality\": \"Brazil\",\n    \"maritalStatus\": \"SINGLE\",\n    \"crm\": \"123123414\",\n    \"specialization\": \"PSYCHIATRY\",\n    \"birthDate\": \"05/02/2004\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ create(400)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ create(409)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Augusto Thales Alves\",\n    \"cpf\": \"19777475900\",\n    \"rg\": \"498686061\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"email\": \"augustothalesalves@marithimaconstrutora.com.br\",\n    \"nationality\": \"Brazil\",\n    \"maritalStatus\": \"SINGLE\",\n    \"crm\": \"123123414\",\n    \"specialization\": \"PSYCHIATRY\",\n    \"birthDate\": \"05/02/2004\",\n    \"password\": \"12345678\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ update(200)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"edsonkevinmoura@plani.com\",\n    \"name\": \"Edson Kevin Joaquim Moura\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"nationality\": \"Brazil\",\n    \"birthDate\": \"12/01/1968\",\n    \"maritalStatus\": \"DIVORCED\",\n    \"crm\": \"132211234\",\n    \"specialization\": \"GYNECOLOGY\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors/3c95eb9c-76db-4b59-8d60-1c11a93c92df",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors",
+								"3c95eb9c-76db-4b59-8d60-1c11a93c92df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(400)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"19777475900\",\n    \"rg\": \"2354663466\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors/3c95eb9c-76db-4b59-8d60-1c11a93c92df",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors",
+								"3c95eb9c-76db-4b59-8d60-1c11a93c92df"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(404)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"edsonkevinmoura@plani.com\",\n    \"name\": \"Edson Kevin Joaquim Moura\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"nationality\": \"Brazil\",\n    \"birthDate\": \"12/01/1968\",\n    \"maritalStatus\": \"DIVORCED\",\n    \"crm\": \"132211234\",\n    \"specialization\": \"GYNECOLOGY\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors/10100000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors",
+								"10100000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ updatePassword(200)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"password\": \"asdfasdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors/3c95eb9c-76db-4b59-8d60-1c11a93c92df/password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors",
+								"3c95eb9c-76db-4b59-8d60-1c11a93c92df",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ updatePassword(400)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors/3c95eb9c-76db-4b59-8d60-1c11a93c92df/password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors",
+								"3c95eb9c-76db-4b59-8d60-1c11a93c92df",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ updatePassword(404)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n   \"password\": \"asdfasdf\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/doctors/100000/password",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"doctors",
+								"100000",
+								"password"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Patient",
+			"item": [
+				{
+					"name": "✅ list(200)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ list?name=\"\"(200)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients?name=Francisco",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Francisco"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ findById(200)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients/5bc7f4b0-16f0-445e-b1f7-92684752e5d5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"5bc7f4b0-16f0-445e-b1f7-92684752e5d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ findById(404)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients/2151515",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"2151515"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ create(201)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Augusto Thales Alves\",\n    \"cpf\": \"19777475900\",\n    \"rg\": \"498686061\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"email\": \"augustothalesalves@marithimaconstrutora.com.br\",\n    \"nationality\": \"Brazil\",\n    \"maritalStatus\": \"SINGLE\",\n    \"birthDate\": \"05/02/2004\",\n    \"emergencyContact\": \"31235456742\",\n    \"addressId\": \"b0f88997-bab5-4ec8-94cf-5fec574b7f94\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ create(400)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ create(409)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Augusto Thales Alves\",\n    \"cpf\": \"19777475900\",\n    \"rg\": \"498686061\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"email\": \"augustothalesalves@marithimaconstrutora.com.br\",\n    \"nationality\": \"Brazil\",\n    \"maritalStatus\": \"SINGLE\",\n    \"birthDate\": \"05/02/2004\",\n    \"emergencyContact\": \"31235456742\",\n    \"addressId\": \"b0f88997-bab5-4ec8-94cf-5fec574b7f94\"}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ update(200)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Augusto Thales Alves\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"email\": \"augustothalesalves@marithimaconstrutora.com.br\",\n    \"nationality\": \"Brazil\",\n    \"maritalStatus\": \"SINGLE\",\n    \"birthDate\": \"05/02/2004\",\n    \"emergencyContact\": \"31235456742\",\n    \"insurance\": \"DJKJDFjf\",\n    \"insuranceCardNumber\": \"32234234234\",\n    \"addressId\": \"b0f88997-bab5-4ec8-94cf-5fec574b7f94\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients/5bc7f4b0-16f0-445e-b1f7-92684752e5d5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"5bc7f4b0-16f0-445e-b1f7-92684752e5d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(400)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"cpf\": \"19777475900\",\n    \"rg\": \"2354663466\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients/5bc7f4b0-16f0-445e-b1f7-92684752e5d5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"5bc7f4b0-16f0-445e-b1f7-92684752e5d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(404)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Augusto Thales Alves\",\n    \"gender\": \"MALE\",\n    \"phone\": \"68999250664\",\n    \"email\": \"augustothalesalves@marithimaconstrutora.com.br\",\n    \"nationality\": \"Brazil\",\n    \"maritalStatus\": \"SINGLE\",\n    \"birthDate\": \"05/02/2004\",\n    \"emergencyContact\": \"31235456742\",\n    \"insurance\": \"DJKJDFjf\",\n    \"insuranceCardNumber\": \"32234234234\",\n    \"addressId\": \"b0f88997-bab5-4ec8-94cf-5fec574b7f94\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/patients/10100000",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"10100000"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ deleteById(204)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients/901cab5a-3a9e-4f26-8d55-6166eb60b730",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"901cab5a-3a9e-4f26-8d55-6166eb60b730"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ deleteById(400)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients/5bc7f4b0-16f0-445e-b1f7-92684752e5d5",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"5bc7f4b0-16f0-445e-b1f7-92684752e5d5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ deleteById(404)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/patients/4324234234",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"patients",
+								"4324234234"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Appointment",
+			"item": [
+				{
+					"name": "✅ findById(200)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/cbe9a6a2-5575-44da-ab43-17b1c846dcd4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"cbe9a6a2-5575-44da-ab43-17b1c846dcd4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ findById(404)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/1035141",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"1035141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ create(201)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reason\": \"Lorem Ipsum\", \n    \"description\": \"Lorem Ipsum\", \n    \"prescription\": \"Lorem Ipsum\", \n    \"precautions\": \"Lorem Ipsum\",\n    \"patientId\": \"5bc7f4b0-16f0-445e-b1f7-92684752e5d5\",\n    \"doctorId\": \"1cd4c588-c9b5-4c88-af4f-b89e4544b0cc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ create(400)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ update(200)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reason\": \"Lorem Ipsum 2\", \n    \"description\": \"Lorem Ipsum 2\", \n    \"prescription\": \"Lorem Ipsum 2\", \n    \"precautions\": \"Lorem Ipsum 2\",\n    \"patientId\": \"5bc7f4b0-16f0-445e-b1f7-92684752e5d5\",\n    \"doctorId\": \"1cd4c588-c9b5-4c88-af4f-b89e4544b0cc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments/cbe9a6a2-5575-44da-ab43-17b1c846dcd4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"cbe9a6a2-5575-44da-ab43-17b1c846dcd4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(400)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"time\": \"2023-04-18T14:02:24.659154\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments/cbe9a6a2-5575-44da-ab43-17b1c846dcd4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"cbe9a6a2-5575-44da-ab43-17b1c846dcd4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(404)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"reason\": \"Lorem Ipsum 2\", \n    \"description\": \"Lorem Ipsum 2\", \n    \"prescription\": \"Lorem Ipsum 2\", \n    \"precautions\": \"Lorem Ipsum 2\",\n    \"patientId\": \"5bc7f4b0-16f0-445e-b1f7-92684752e5d5\",\n    \"doctorId\": \"1cd4c588-c9b5-4c88-af4f-b89e4544b0cc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/appointments/1035141",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"1035141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ delete(204)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/cbe9a6a2-5575-44da-ab43-17b1c846dcd4",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"cbe9a6a2-5575-44da-ab43-17b1c846dcd4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ delete(404)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/appointments/1534554",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"appointments",
+								"1534554"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Exam",
+			"item": [
+				{
+					"name": "✅ findById(200)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/exams/4049ddc5-9844-4af9-beae-ecd35ba3c792",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams",
+								"4049ddc5-9844-4af9-beae-ecd35ba3c792"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ findById(404)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/exams/1035141",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams",
+								"1035141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ create(201)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Lorem Ipsum\", \n    \"type\": \"Lorem Ipsum\", \n    \"result\": \"Lorem Ipsum\", \n    \"laboratory\": \"Lorem Ipsum\",\n    \"fileUrl\": \"https://www.4devs.com.br/gerador_de_pessoas\",\n    \"patientId\": \"5bc7f4b0-16f0-445e-b1f7-92684752e5d5\",\n    \"doctorId\": \"1cd4c588-c9b5-4c88-af4f-b89e4544b0cc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exams",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ create(400)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exams",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ update(200)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Lorem Ipsum 2\", \n    \"type\": \"Lorem Ipsum 2\", \n    \"result\": \"Lorem Ipsum 2\", \n    \"laboratory\": \"Lorem Ipsum 2\",\n    \"fileUrl\": \"https://www.4devs.com.br/gerador_de_pessoas\",\n    \"patientId\": \"5bc7f4b0-16f0-445e-b1f7-92684752e5d5\",\n    \"doctorId\": \"1cd4c588-c9b5-4c88-af4f-b89e4544b0cc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exams/4049ddc5-9844-4af9-beae-ecd35ba3c792",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams",
+								"4049ddc5-9844-4af9-beae-ecd35ba3c792"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(400)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"time\": \"2023-04-18T14:02:24.659154\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exams/4049ddc5-9844-4af9-beae-ecd35ba3c792",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams",
+								"4049ddc5-9844-4af9-beae-ecd35ba3c792"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ update(404)",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Lorem Ipsum 2\", \n    \"type\": \"Lorem Ipsum 2\", \n    \"result\": \"Lorem Ipsum 2\", \n    \"laboratory\": \"Lorem Ipsum 2\",\n    \"fileUrl\": \"https://www.4devs.com.br/gerador_de_pessoas\",\n    \"patientId\": \"5bc7f4b0-16f0-445e-b1f7-92684752e5d5\",\n    \"doctorId\": \"1cd4c588-c9b5-4c88-af4f-b89e4544b0cc\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/exams/1035141",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams",
+								"1035141"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "✅ delete(204)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/exams/4049ddc5-9844-4af9-beae-ecd35ba3c792",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams",
+								"4049ddc5-9844-4af9-beae-ecd35ba3c792"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "❌ delete(404)",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/exams/1534554",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"exams",
+								"1534554"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Stats",
+			"item": [
+				{
+					"name": "✅ stats(200)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/stats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"stats"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "localhost:8080/api",
+			"type": "default"
+		}
+	]
+}

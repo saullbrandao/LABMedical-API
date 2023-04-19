@@ -38,12 +38,12 @@ public class DoctorController {
     }
 
     @PutMapping("/{id}")
-    public DoctorResponseDto update(@RequestBody @Valid UpdateDoctorDto updateDoctorDto, @PathVariable Long id) {
+    public DoctorResponseDto update(@RequestBody @Valid UpdateDoctorDto updateDoctorDto, @PathVariable String id) {
         return doctorService.update(updateDoctorDto, id);
     }
 
-    @PatchMapping("/{id}/password")
-    public DoctorResponseDto updatePassword(@RequestBody @Valid UpdateDoctorPasswordDto updateDoctorPasswordDto, @PathVariable Long id) {
+    @PutMapping("/{id}/password")
+    public DoctorResponseDto updatePassword(@RequestBody @Valid UpdateDoctorPasswordDto updateDoctorPasswordDto, @PathVariable String id) {
         return doctorService.updatePassword(updateDoctorPasswordDto, id);
     }
 

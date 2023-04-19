@@ -20,7 +20,7 @@ public class AppointmentController {
     }
 
     @GetMapping("/{id}")
-    public AppointmentResponseDto getById(@PathVariable Long id) {
+    public AppointmentResponseDto getById(@PathVariable String id) {
         return appointmentService.getAppointmentById(id);
     }
 
@@ -32,12 +32,12 @@ public class AppointmentController {
     }
 
     @PutMapping("/{id}")
-    public AppointmentResponseDto update(@RequestBody @Valid AppointmentRequestDto appointmentRequestDto, @PathVariable Long id) {
+    public AppointmentResponseDto update(@RequestBody @Valid AppointmentRequestDto appointmentRequestDto, @PathVariable String id) {
         return appointmentService.update(appointmentRequestDto, id);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteById(@PathVariable String id) {
         appointmentService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
