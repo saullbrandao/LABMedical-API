@@ -15,7 +15,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
-public class User extends Person {
+public class Doctor extends Person {
     @NotNull
     private String crm;
 

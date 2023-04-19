@@ -6,14 +6,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements CommandLineRunner {
     private final AddressDataLoader addressDataLoader;
-    private final UserDataLoader userDataLoader;
+    private final DoctorDataLoader doctorDataLoader;
     private final PatientDataLoader patientDataLoader;
     private final AppointmentDataLoader appointmentDataLoader;
     private final ExamDataLoader examDataLoader;
 
-    public DataLoader(AddressDataLoader addressDataLoader, UserDataLoader userDataLoader, PatientDataLoader patientDataLoader, AppointmentDataLoader appointmentDataLoader, ExamDataLoader examDataLoader) {
+    public DataLoader(AddressDataLoader addressDataLoader, DoctorDataLoader doctorDataLoader, PatientDataLoader patientDataLoader, AppointmentDataLoader appointmentDataLoader, ExamDataLoader examDataLoader) {
         this.addressDataLoader = addressDataLoader;
-        this.userDataLoader = userDataLoader;
+        this.doctorDataLoader = doctorDataLoader;
         this.patientDataLoader = patientDataLoader;
         this.appointmentDataLoader = appointmentDataLoader;
         this.examDataLoader = examDataLoader;
@@ -21,10 +21,10 @@ public class DataLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        addressDataLoader.loadAddressData();
-        userDataLoader.loadUserData();
-        patientDataLoader.loadPatientData();
-        appointmentDataLoader.loadAppointmentData();
-        examDataLoader.loadExamData();
+        addressDataLoader.load();
+        doctorDataLoader.load();
+        patientDataLoader.load();
+        appointmentDataLoader.load();
+        examDataLoader.load();
     }
 }

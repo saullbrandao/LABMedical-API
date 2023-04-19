@@ -15,5 +15,5 @@ public class ExamRequestDto {
     private String fileUrl;
 
     @NotNull
-    private Long patientId;
+    private Long patientId, doctorId;
 }

@@ -6,7 +6,7 @@ import java.time.LocalDateTime;
 
 @Data
 public class ExamResponseDto {
-    private Long id, patientId;
+    private Long id, patientId, doctorId;
     private String name, type, fileUrl, result, laboratory;
     private LocalDateTime time;
 }

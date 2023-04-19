@@ -1,7 +1,7 @@
 package com.labmedicine.labmedicalapi.loaders;
 
-import com.labmedicine.labmedicalapi.models.User;
-import com.labmedicine.labmedicalapi.repositories.UserRepository;
+import com.labmedicine.labmedicalapi.models.Doctor;
+import com.labmedicine.labmedicalapi.repositories.DoctorRepository;
 import com.labmedicine.labmedicalapi.utils.MaritalStatus;
 import com.labmedicine.labmedicalapi.utils.MedicalSpecialization;
 import org.springframework.stereotype.Component;
@@ -10,18 +10,18 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Component
-public class UserDataLoader  {
-    private final UserRepository userRepository;
+public class DoctorDataLoader {
+    private final DoctorRepository doctorRepository;
 
-    public UserDataLoader(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public DoctorDataLoader(DoctorRepository doctorRepository) {
+        this.doctorRepository = doctorRepository;
     }
 
 
-    public void loadUserData() {
+    public void load() {
 //      Only runs if the table is empty
-        if (userRepository.count() == 0) {
-            User user1 = User.builder()
+        if (doctorRepository.count() == 0) {
+            Doctor doctor1 = Doctor.builder()
                     .name("Edson Kevin Joaquim Moura")
                     .cpf("60265245257")
                     .rg("424924948")
@@ -36,7 +36,7 @@ public class UserDataLoader  {
                     .password("wtraHr0usS")
                     .build();
 
-            User user2 = User.builder()
+            Doctor doctor2 = Doctor.builder()
                     .name("Pedro Renato Assis")
                     .cpf("15922717154")
                     .rg("419408071")
@@ -51,7 +51,7 @@ public class UserDataLoader  {
                     .password("0UnCuiceaX")
                     .build();
 
-            userRepository.saveAll(List.of(user1, user2));
+            doctorRepository.saveAll(List.of(doctor1, doctor2));
         }
     }
 }
