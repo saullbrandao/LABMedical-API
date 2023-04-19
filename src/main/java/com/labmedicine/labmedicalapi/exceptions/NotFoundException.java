@@ -1,13 +1,7 @@
 package com.labmedicine.labmedicalapi.exceptions;
 
-public class NotFoundException {
-    private final String message;
-
+public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return message;
+        super(message);
     }
 }

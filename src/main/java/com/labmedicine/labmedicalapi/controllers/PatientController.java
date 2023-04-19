@@ -1,6 +1,6 @@
 package com.labmedicine.labmedicalapi.controllers;
 
-import com.labmedicine.labmedicalapi.exceptions.ValidationErrorException;
+import com.labmedicine.labmedicalapi.exceptions.dto.ValidationErrorExceptionDto;
 import com.labmedicine.labmedicalapi.dtos.patient.CreatePatientDto;
 import com.labmedicine.labmedicalapi.dtos.patient.PatientResponseDto;
 import com.labmedicine.labmedicalapi.dtos.patient.UpdatePatientDto;
@@ -37,7 +37,7 @@ public class PatientController {
     @PostMapping
     public ResponseEntity<?> create(@RequestBody @Valid CreatePatientDto createPatientDto, UriComponentsBuilder uriComponentsBuilder) {
         if(patientService.findByCpf(createPatientDto.getCpf()) != null) {
-            ValidationErrorException error = new ValidationErrorException(new FieldError("cpfError", "cpf", "This CPF is already registered."));
+            ValidationErrorExceptionDto error = new ValidationErrorExceptionDto(new FieldError("cpfError", "cpf", "This CPF is already registered."));
             return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
         }
 
@@ -49,5 +49,11 @@ public class PatientController {
     @PutMapping("/{id}")
     public PatientResponseDto update(@RequestBody @Valid UpdatePatientDto updatePatientDto, @PathVariable Long id) {
         return patientService.update(updatePatientDto, id);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id) {
+        patientService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }

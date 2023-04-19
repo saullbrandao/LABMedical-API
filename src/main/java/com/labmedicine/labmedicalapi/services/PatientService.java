@@ -3,9 +3,13 @@ package com.labmedicine.labmedicalapi.services;
 import com.labmedicine.labmedicalapi.dtos.patient.CreatePatientDto;
 import com.labmedicine.labmedicalapi.dtos.patient.PatientResponseDto;
 import com.labmedicine.labmedicalapi.dtos.patient.UpdatePatientDto;
+import com.labmedicine.labmedicalapi.exceptions.PatientHasAppointmentsException;
+import com.labmedicine.labmedicalapi.exceptions.PatientHasExamsException;
 import com.labmedicine.labmedicalapi.mappers.PatientMapper;
 import com.labmedicine.labmedicalapi.models.Address;
 import com.labmedicine.labmedicalapi.models.Patient;
+import com.labmedicine.labmedicalapi.repositories.AppointmentRepository;
+import com.labmedicine.labmedicalapi.repositories.ExamRepository;
 import com.labmedicine.labmedicalapi.repositories.PatientRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
@@ -17,11 +21,15 @@ public class PatientService {
     private final PatientRepository patientRepository;
     private final PatientMapper patientMapper;
     private final AddressService addressService;
+    private final ExamRepository examRepository;
+    private final AppointmentRepository appointmentRepository;
 
-    public PatientService(PatientRepository patientRepository, PatientMapper patientMapper, AddressService addressService) {
+    public PatientService(PatientRepository patientRepository, PatientMapper patientMapper, AddressService addressService, ExamRepository examRepository, AppointmentRepository appointmentRepository) {
         this.patientRepository = patientRepository;
         this.patientMapper = patientMapper;
         this.addressService = addressService;
+        this.examRepository = examRepository;
+        this.appointmentRepository = appointmentRepository;
     }
 
     public PatientResponseDto create(CreatePatientDto createPatientDto) {
@@ -63,5 +71,18 @@ public class PatientService {
 
     public Patient findById(Long id) {
         return patientRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Patient not found."));
+    }
+
+    public void deleteById(Long id) {
+        Patient patient = findById(id);
+        if(examRepository.existsByPatientId(id)) {
+            throw new PatientHasExamsException();
+        }
+
+        if(appointmentRepository.existsByPatientId(id)) {
+            throw new PatientHasAppointmentsException();
+        }
+
+        patientRepository.deleteById(id);
     }
 }
