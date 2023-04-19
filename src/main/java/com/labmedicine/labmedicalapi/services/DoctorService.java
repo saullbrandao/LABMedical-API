@@ -38,6 +38,7 @@ public class DoctorService {
     public DoctorResponseDto update(UpdateDoctorDto updateDoctorDto, Long id) {
         Doctor doctorFound = findById(id);
         Doctor mappedDoctor = doctorMapper.map(updateDoctorDto);
+        mappedDoctor.setId(id);
         mappedDoctor.setCpf(doctorFound.getCpf());
         mappedDoctor.setRg(doctorFound.getRg());
         mappedDoctor.setPassword(doctorFound.getPassword());

@@ -45,6 +45,7 @@ public class PatientService {
         Patient patientFound = findById(id);
         Address address = addressService.getAddressById(updatePatientDto.getAddressId());
         Patient mappedPatient = patientMapper.map(updatePatientDto);
+        mappedPatient.setId(id);
         mappedPatient.setCpf(patientFound.getCpf());
         mappedPatient.setRg(patientFound.getRg());
         mappedPatient.setAddress(address);
