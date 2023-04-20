@@ -1,5 +1,6 @@
 package com.labmedicine.labmedicalapi.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,6 +29,7 @@ public class Exam {
     private LocalDateTime time;
 
     @ManyToOne
+    @JsonBackReference
     @NotNull
     private Patient patient;
 
