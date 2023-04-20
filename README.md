@@ -55,7 +55,7 @@
 - Criar bando de dados Oracle com o nome labmedicalbd
 - Clonar o repositório, importá-lo em sua IDE de escolha e instalar as dependencias
 - Alterar o arquivo application.properties com o username e senha cadastrada no Oracle DB
-- Executara aplicação
+- Executar a aplicação
 
 # 🧰 Técnicas usadas
 
