@@ -1,7 +1,10 @@
 package com.labmedicine.labmedicalapi.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -10,6 +13,8 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity(name = "patients")
 @Data
@@ -27,4 +32,9 @@ public class Patient extends Person {
     @ManyToOne
     @NotNull
     private Address address;
+
+    @OneToMany(mappedBy = "patient", fetch = FetchType.EAGER)
+    @JsonManagedReference
+    private List<Exam> exams = new ArrayList<>();
+
 }
